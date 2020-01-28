@@ -12,7 +12,7 @@ namespace TestesEpplus
 
         public Form1()
         {
-            Planilha = Montador._planilhaHelper.Workbook.Worksheets.Add("Sheet 1");
+            Planilha = Montador._planilhaHelper.Workbook.Worksheets.Add("Planilha de testes");
             InitializeComponent();
         }
 

@@ -27,11 +27,18 @@ namespace TestesEpplus
             _planilhaHelper.Workbook.Properties.Subject = "Teste top";
             _planilhaHelper.Workbook.Properties.Created = DateTime.Now;
 
-            //Add some text to cell A1
-            planilha.Cells[1, 1].Value = "My first EPPlus spreadsheet!";     //You could also use [line, column] notation:     
-            planilha.Cells[1, 2].Value = "This is cell B1!";
+            Random rnd = new Random();
+            
+            for (int i = 1; i <= 10; i++)
+            {
+                planilha.Cells[1, i].Value = "Valor  " + i;
+                planilha.Cells[2, i].Value = rnd.Next(0, 2);
+                planilha.Cells[3, i].Value = rnd.Next(0, 2);
+                planilha.Cells[4, i].Value = rnd.Next(0, 2);
+                
+            }
 
-            //Save your file     
+        //Save your file     
             caminho = new FileInfo($@"C:\Users\Usuario\Desktop\Sandbox\PlanilhasTestes\teste.xlsx");
             _planilhaHelper.SaveAs(caminho);
 
@@ -46,7 +53,10 @@ namespace TestesEpplus
 
         public void AlterePlanilha(ExcelWorksheet planilha)
         {
-            planilha.Cells[4, 1].Value = $"Voce alterou a planilha hein";
+
+            planilha.Cells["A1:B5"].Merge = true;
+
+            // planilha.Column(3).Hidden = true;
             _planilhaHelper.SaveAs(caminho);
         }
 
